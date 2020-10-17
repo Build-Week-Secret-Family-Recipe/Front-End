@@ -4,7 +4,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import ProtectedRoute from './utils/ProtectedRoute';
 
 // components
-import Navigation from './components/Navigation';
+import Navigation from './components/Navbar';
 import AddNewRecipe from './components/AddRecipeForm';
 import EditRecipe from './components/EditRecipe';
 import RecipePage from './components/RecipePage';
@@ -15,7 +15,7 @@ import LoginForm from './components/LoginForm';
 const App = () => {
   return (
     <div>
-      <Navbar />
+      <Navigation />
 
       {/* Switch checks each path down the list */}
       <Switch>

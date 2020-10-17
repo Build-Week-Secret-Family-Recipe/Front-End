@@ -10,7 +10,7 @@ import {
   Input,
   Form as ReactForm,
 } from 'reactstrap';
-import { postAddRecipe } from '../store/actions';
+import { AddRecipe } from '../store/actions';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
@@ -43,7 +43,7 @@ const AddNewRecipe = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(
-      postAddRecipe({
+      AddRecipe({
         title: newRecipe.title,
         source: newRecipe.source,
         ingredients: newRecipe.ingredients,
