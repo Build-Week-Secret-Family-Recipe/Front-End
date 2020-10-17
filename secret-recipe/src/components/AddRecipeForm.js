@@ -67,7 +67,7 @@ const AddNewRecipe = () => {
                 type='text'
                 name='title'
                 id='title'
-                placeholder='Recipe Name'
+                placeholder='Recipe Title'
                 onChange={handleChange}
                 value={newRecipe.title}
               />
@@ -78,7 +78,7 @@ const AddNewRecipe = () => {
                 type='text'
                 name='source'
                 id='source'
-                placeholder='Who made it first?'
+                placeholder='Recipe Source'
                 onChange={handleChange}
                 value={newRecipe.source}
               />
