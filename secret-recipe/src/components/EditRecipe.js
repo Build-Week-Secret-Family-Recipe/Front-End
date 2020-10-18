@@ -42,13 +42,13 @@ const EditRecipe = () => {
       });
   }, [id]);
 
-  const handleChange = (ev) => {
-    ev.persist();
-    setRecipe({ ...recipe, [ev.target.name]: ev.target.value });
+  const handleChange = (e) => {
+    e.persist();
+    setRecipe({ ...recipe, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
-    console.log('Add recipe on submit', recipe);
+    console.log('Adds recipe', recipe);
     e.preventDefault();
     axiosWithAuth()
       .put(`/api/recipes/${id}`, recipe)

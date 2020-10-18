@@ -64,7 +64,7 @@ import {
           error: '',
         };
       case ADDRECIPE_SUCCESS:
-        console.log('action.payload in reducers', action.payload);
+        console.log('action payload', action.payload);
         return {
           ...state,
           recipes: [...state.recipes, action.payload],

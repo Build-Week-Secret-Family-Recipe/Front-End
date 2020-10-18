@@ -36,7 +36,7 @@ const LoginForm = (props) => {
     });
   };
 
-  // POST request handled through Redux
+  // POST request through Redux
   const handleSubmit = (e) => {
     e.preventDefault();
     props.Login(userInfo);
@@ -75,7 +75,7 @@ const LoginForm = (props) => {
               </FormGroup>
               <button>Log In</button>
               <h6 style={{ color: 'darkBlue' }}>
-                Don't have an account?<Link to='/registration'> Register</Link>{' '}
+                Don't have an account?<Link to='/registerForm'> Register Here </Link>{' '}
               </h6>
             </Form>
             {props.isFetching && (
@@ -87,8 +87,9 @@ const LoginForm = (props) => {
         </Row>
       </Container>
     );
-  }
-};
+}
+}
+
 
 const mapStateToProps = (state) => {
   return {

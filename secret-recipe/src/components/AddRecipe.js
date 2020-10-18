@@ -125,7 +125,7 @@ const AddNewRecipe = () => {
               />
             </FormGroup>
 
-            <Button type='submit'>Add</Button>
+            <Button type='submit'>Add Recipe</Button>
           </Form>
         </Col>
       </Row>

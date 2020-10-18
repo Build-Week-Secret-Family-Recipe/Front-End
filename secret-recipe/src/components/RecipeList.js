@@ -11,15 +11,15 @@ const RecipeList = () => {
   const [allRecipes, setAllRecipes] = useState([]);
   const [err, setErr] = useState([]);
   const [isFetching, setIsFetching] = useState(true);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchData, setSearchData] = useState('');
 
   //console.log(userId)
 
   const handleChange = (event) => {
-    setSearchTerm(event.target.value);
+    setSearchData(event.target.value);
   };
   const handleSubmit = (event) => {
-    setSearchTerm(event.target['title'].value);
+    setSearchData(event.target['title'].value);
     event.preventDefault();
   };
   useEffect(() => {
@@ -42,7 +42,7 @@ const RecipeList = () => {
   if (isFetching)
     return (
       <SpinnerDiv>
-        <Spinner color='success' />
+        <Spinner color='danger' />
       </SpinnerDiv>
     );
   else if (getallRecipes)
@@ -57,7 +57,7 @@ const RecipeList = () => {
                 type='text'
                 placeholder='Search recipe'
                 onChange={handleChange}
-                value={searchTerm}
+                value={searchData}
               />
               <Button type='submit'>Search</Button>
             </div>
@@ -67,7 +67,7 @@ const RecipeList = () => {
           {allRecipes.map((recipe) => {
             if (
               recipe.title &&
-              recipe.title.toLowerCase().includes(searchTerm.toLowerCase())
+              recipe.title.toLowerCase().includes(searchData.toLowerCase())
             ) {
               return (
                 <Col xs='12' sm='6' md='4' key={recipe.id}>
@@ -86,7 +86,7 @@ const RecipeList = () => {
           <Col xs='12' lg={{ size: 4, offset: 4 }}>
             <Card>
               <CardBody>
-                No recipes yet? <Link to='/addrecipe'>Add One!</Link>
+                No recipes yet? <Link to='/addrecipe'>Add Your Recipe!</Link>
               </CardBody>
             </Card>
           </Col>

@@ -16,7 +16,7 @@ export const Login = (credentials) => (dispatch) => {
   dispatch({ type: LOGIN_START });
 
   axiosWithAuth()
-    .post('/login', credentials)
+    .post('/auth/login', credentials)
     .then((res) => {
       console.log(res);
       localStorage.setItem('token', res.data.token);
@@ -34,7 +34,7 @@ export const Register = (credentials) => (dispatch) => {
   dispatch({ type: REGISTER_START });
 
   axiosWithAuth()
-    .post('/register', credentials)
+    .post('/auth/register', credentials)
     .then((res) => {
       console.log(res);
       dispatch({ type: REGISTER_SUCCESS });
@@ -51,11 +51,11 @@ export const AddRecipe = (credentials) => (dispatch) => {
     type: ADDRECIPE_START,
     payload: credentials,
   });
-  console.log('creds in post add', credentials);
+  console.log('Adding credentials', credentials);
   axiosWithAuth()
     .post('/recipes', credentials)
     .then((res) => {
-      console.log('addRecipe response', res);
+      console.log('Adding Recipe', res);
       dispatch({
         type: ADDRECIPE_SUCCESS,
         payload: res.data.created_recipe,
@@ -65,7 +65,7 @@ export const AddRecipe = (credentials) => (dispatch) => {
       console.log(err);
       dispatch({
         type: ADDRECIPE_FAILURE,
-        payload: 'error posting data',
+        payload: 'error posting',
       });
     });
 };

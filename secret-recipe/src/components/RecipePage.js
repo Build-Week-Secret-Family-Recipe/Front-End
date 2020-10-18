@@ -30,7 +30,7 @@ const RecipePage = (props) => {
     axiosWithAuth()
       .get(`/api/recipes/${id}`)
       .then((res) => {
-        console.log('recipe page response', res);
+        console.log('Show Recipe Data', res);
         setItem(res.data);
       })
       .catch((err) => {
@@ -55,7 +55,7 @@ const RecipePage = (props) => {
 
   if (!item || (item.user_id !== userId && item.user_id > 0))
     return (
-      <div className='status'>Uh oh! You don't have access to this recipe!</div>
+      <div className='status'>You don't have access to this recipe!</div>
     );
   else
     return (

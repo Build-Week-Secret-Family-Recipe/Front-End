@@ -23,7 +23,7 @@ const Input = styled(Field)`
   margin-bottom: 15px;
 `;
 
-const RegistrationForm = (props) => {
+const RegisterForm = (props) => {
   if (localStorage.getItem('token')) {
     return <Redirect to='/recipes' />;
   } else {
@@ -36,11 +36,11 @@ const RegistrationForm = (props) => {
         validationSchema={Yup.object().shape({
           username: Yup.string()
             .min(2, 'Username requires at least 2 characters')
-            .max(50, 'Username cannot be more than 50 characters')
+            .max(30, 'Username cannot be more than 30 characters')
             .required('You need a username'),
           password: Yup.string()
-            .min(4, 'Password needs to be at least 4 characters')
-            .required('You need a password'),
+            .min(5, 'Password needs to be at least 5 characters')
+            .required('Password is required'),
         })}
         onSubmit={(values) => {
           console.log(values);
@@ -82,13 +82,13 @@ const RegistrationForm = (props) => {
                     />
                     <button type='submit'>Register</button>
                     <h6>
-                      Already have an account?<Link to='/login'> LogIn</Link>{' '}
+                      Already have an account?<Link to='/loginForm'> Login</Link>{' '}
                     </h6>
                   </FormikForm>
                 </FormContainer>
                 {props.isFetching && (
                   <SpinnerDiv>
-                    <Spinner color='success' />
+                    <Spinner color='danger' />
                   </SpinnerDiv>
                 )}
               </Col>
@@ -108,5 +108,5 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, { Register, Login })(
-  RegistrationForm
+  RegisterForm
 );
