@@ -15,27 +15,27 @@ import LoginForm from './components/LoginForm';
 const App = () => {
   return (
     <BrowserRouter>
-      <div className='App'>
-        <Navigation />
+      <Navigation />
+      {/* Protected routes to check token or redirect to the login if no token is available */}
+      
+          <Switch>
+            <ProtectedRoute path='/addrecipe' component={AddNewRecipe} />
+            <ProtectedRoute path='/editrecipe/:id' component={EditRecipe} />
+            <ProtectedRoute path='/recipes/:id' component={RecipePage} />
+            <ProtectedRoute path='/recipes' component={RecipeList} />
+            <Route exact path='/registration' component={RegisterForm} />
+            <Route exact path='/login' component={LoginForm} />
 
-        <Switch>
-          <ProtectedRoute path='/addrecipe' component={AddNewRecipe} />
-          <ProtectedRoute path='/editrecipe/:id' component={EditRecipe} />
-          <ProtectedRoute path='/recipes/:id' component={RecipePage} />
-          <ProtectedRoute path='/recipes' component={RecipeList} />
-          <Route path='/register' component={RegisterForm} />
-          <Route path='/login' component={LoginForm} />
+            {/* Token needed to redirect to recipe list, if not redirect to login */}
+            <Route path='/'>
+              {localStorage.getItem('token') ? (
+                <Redirect to='/recipes' />
+              ) : (
+                <Redirect to='/login' />
+              )}
+            </Route>
+          </Switch>
 
-          {/* If user has a token, redirect to recipe list, if not redirect to login */}
-          <Route path='/'>
-            {localStorage.getItem('token') ? (
-              <Redirect to='/recipes' />
-            ) : (
-              <Redirect to='/login' />
-            )}
-          </Route>
-        </Switch>
-      </div>
     </BrowserRouter>
   );
 };

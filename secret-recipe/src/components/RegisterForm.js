@@ -19,7 +19,7 @@ const Input = styled(Field)`
   width: 100%;
   padding: 6px 10px;
   border: 1px solid #d5d5d5;
-  border-radius: 5px;
+  border-radius: 20px;
   margin-bottom: 15px;
 `;
 
@@ -82,7 +82,8 @@ const RegisterForm = (props) => {
                     />
                     <button type='submit'>Register</button>
                     <h6>
-                      Already have an account?<Link to='/loginForm'> Login</Link>{' '}
+                      Already have an account?
+                      <Link to='/loginForm'> Login</Link>{' '}
                     </h6>
                   </FormikForm>
                 </FormContainer>
@@ -107,6 +108,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { Register, Login })(
-  RegisterForm
-);
+export default connect(mapStateToProps, { Register, Login })(RegisterForm);

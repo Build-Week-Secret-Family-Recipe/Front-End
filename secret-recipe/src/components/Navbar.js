@@ -19,15 +19,13 @@ const Navigation = () => {
         tag={Link}
         to='/'
         className='mr-auto'>
-        Secret Family Recipes 
+        Secret Family Recipes
       </NavbarBrand>
 
       {localStorage.getItem('token') ? (
         <Nav className='nav-links'>
           <NavItem>
-            <NavLink
-              a
-              href='need website address from Marketing'>
+            <NavLink a href='need website address from Marketing'>
               Home
             </NavLink>
           </NavItem>
@@ -59,7 +57,7 @@ const Navigation = () => {
           <NavItem>
             <NavLink
               tag={Link}
-              to='/login'
+              to='/recipes'
               className={location.pathname === '/login' ? 'active' : ''}>
               Log In
             </NavLink>

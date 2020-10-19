@@ -49,25 +49,25 @@ const LoginForm = (props) => {
     return (
       <Container>
         <Row>
-          <Col xs='12' md={{ size: 6, offset: 3 }}>
+          <Col xs='10' md={{ size: 5, offset: 3 }}>
             <Form onSubmit={handleSubmit}>
               <FormGroup>
-                <Label for='username-field'>Username</Label>
+                <Label for='username'>Username</Label>
                 <Input
                   type='text'
                   name='username'
-                  id='username-field'
+                  id='username'
                   placeholder='Username'
                   value={userInfo.username}
                   onChange={handleChange}
                 />
               </FormGroup>
               <FormGroup>
-                <Label for='password-field'>Password</Label>
+                <Label for='password'>Password</Label>
                 <Input
                   type='password'
                   name='password'
-                  id='password-field'
+                  id='password'
                   placeholder='Password'
                   value={userInfo.password}
                   onChange={handleChange}
@@ -75,7 +75,8 @@ const LoginForm = (props) => {
               </FormGroup>
               <button>Log In</button>
               <h6 style={{ color: 'darkBlue' }}>
-                Don't have an account?<Link to='/registerForm'> Register Here </Link>{' '}
+                Don't have an account?
+                <Link to='/registration'> Register Here </Link>{' '}
               </h6>
             </Form>
             {props.isFetching && (
@@ -87,9 +88,8 @@ const LoginForm = (props) => {
         </Row>
       </Container>
     );
-}
-}
-
+  }
+};
 
 const mapStateToProps = (state) => {
   return {
