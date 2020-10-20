@@ -53,7 +53,7 @@ const LoginForm = (props) => {
             <Form onSubmit={handleSubmit}>
               <FormGroup>
                 <Label for='email'>Email</Label>
-                <Input
+                <Input style={{ borderRadius: '20px' }}
                   type='text'
                   name='email'
                   id='email'
@@ -64,7 +64,7 @@ const LoginForm = (props) => {
               </FormGroup>
               <FormGroup>
                 <Label for='password'>Password</Label>
-                <Input
+                <Input style={{ borderRadius: '20px' }}
                   type='password'
                   name='password'
                   id='password'
