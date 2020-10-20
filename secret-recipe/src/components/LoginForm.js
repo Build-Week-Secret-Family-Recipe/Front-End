@@ -40,7 +40,7 @@ const LoginForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     props.Login(userInfo);
-    history.push('/api/auth/recipes');
+    history.push('/api/auth/login');
   };
 
   if (localStorage.getItem('token')) {
