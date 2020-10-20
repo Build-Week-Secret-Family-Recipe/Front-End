@@ -12,6 +12,10 @@ export const ADDRECIPE_START = 'ADDRECIPE_START';
 export const ADDRECIPE_SUCCESS = 'ADDRECIPE_SUCCESS';
 export const ADDRECIPE_FAILURE = 'ADDRECIPE_FAILURE';
 
+export const UPDATERECIPE_START = 'UPDATERECIPE_START';
+export const UPDATERECIPE_SUCCESS = 'UPDATERECIPE_SUCCESS';
+export const UPDATERECIPE_FAILURE = 'UPDATERECIPE_FAILURE';
+
 export const Login = (credentials) => (dispatch) => {
   dispatch({ type: LOGIN_START });
 
@@ -51,7 +55,7 @@ export const AddRecipe = (credentials) => (dispatch) => {
     type: ADDRECIPE_START,
     payload: credentials,
   });
-  console.log('Adding credentials', credentials);
+  console.log('Adding New Recipe', credentials);
   axiosWithAuth()
     .post('/recipes', credentials)
     .then((res) => {
@@ -65,7 +69,31 @@ export const AddRecipe = (credentials) => (dispatch) => {
       console.log(err);
       dispatch({
         type: ADDRECIPE_FAILURE,
-        payload: 'error posting',
+        payload: 'error adding',
       });
     });
 };
+
+export const UpdateRecipe = (credentials) => (dispatch) => {
+    dispatch({
+      type: UPDATERECIPE_START,
+      payload: credentials,
+    });
+    console.log('Updating data', credentials);
+    axiosWithAuth()
+      .post('/recipes', credentials)
+      .then((res) => {
+        console.log('Updating Recipe', res);
+        dispatch({
+          type: UPDATERECIPE_SUCCESS,
+          payload: res.data.updated_recipe,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: UPDATERECIPE_FAILURE,
+          payload: 'error updating',
+        });
+      });
+  };

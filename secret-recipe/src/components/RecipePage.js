@@ -28,7 +28,7 @@ const RecipePage = (props) => {
 
   useEffect(() => {
     axiosWithAuth()
-      .get(`/api/recipes/${id}`)
+      .get(`/api/recipes/user/:user_id`)
       .then((res) => {
         console.log('Show Recipe Data', res);
         setItem(res.data);
@@ -45,7 +45,7 @@ const RecipePage = (props) => {
 
   const deleteRecipe = (id) => {
     axiosWithAuth()
-      .delete(`/api/recipes/${id}`)
+      .delete(`/api/recipes/:recipe_id`)
       .then((res) => {
         console.log('Delete:', res.data.message);
         history.push('/api/recipes');

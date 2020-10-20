@@ -30,22 +30,24 @@ const RegisterForm = (props) => {
     return (
       <Formik
         initialValues={{
-          username: '',
+          name: '',
+          email: '',
+          role: '',
           password: '',
         }}
-        validationSchema={Yup.object().shape({
-          username: Yup.string()
-            .min(2, 'Username requires at least 2 characters')
-            .max(30, 'Username cannot be more than 30 characters')
-            .required('You need a username'),
-          password: Yup.string()
-            .min(5, 'Password needs to be at least 5 characters')
-            .required('Password is required'),
+        //yup validation
+        formSchema = {Yup.object().shape({
+            name: Yup.string().required("Please enter your full name!"),
+            email: Yup.string().email().required("Please enter an email!"),
+            role: Yup.string().required("Please enter a role!"),
+            password: Yup.string()
+                .min(5, 'Password needs to be at least 5 characters')
+                .required('Password is required'),
         })}
         onSubmit={(values) => {
           console.log(values);
           axiosWithAuth()
-            .post('/auth/register', values)
+            .post('/api/auth/register', values)
             .then((res) => {
               console.log(res);
               props.login(values);
@@ -60,15 +62,35 @@ const RegisterForm = (props) => {
               <Col xs='12' md={{ size: 6, offset: 3 }}>
                 <FormContainer>
                   <FormikForm style={{ width: '100%' }}>
-                    {props.touched.username && props.errors.username && (
-                      <p>{props.errors.username}</p>
+                    {props.touched.name && props.errors.name && (
+                      <p>{props.errors.name}</p>
                     )}
-                    <label htmlFor='username'>Username</label>
+                    <label htmlFor='name'>Name</label>
                     <Input
                       type='text'
-                      name='username'
-                      id='username'
-                      placeholder='Username'
+                      name='name'
+                      id='name'
+                      placeholder='Name'
+                    />
+                    {props.touched.email && props.errors.email && (
+                      <p>{props.errors.email}</p>
+                    )}
+                    <label htmlFor='email'>Email</label>
+                    <Input
+                      type='text'
+                      name='email'
+                      id='email'
+                      placeholder='Email'
+                    />
+                    {props.touched.role && props.errors.role && (
+                      <p>{props.errors.role}</p>
+                    )}          
+                    <label htmlFor='role'>User Role</label>
+                    <Input
+                      type='text'
+                      name='role'
+                      id='role'
+                      placeholder='User Role'
                     />
                     {props.touched.password && props.errors.password && (
                       <p>{props.errors.password}</p>

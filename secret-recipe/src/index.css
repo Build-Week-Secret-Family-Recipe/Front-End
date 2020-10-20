@@ -6,7 +6,7 @@
 
 body {
   color: #212529;
-  background-image: url('./img/recipefile.jpg');
+  background-image: url('./img/background.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-color: rgba(255, 255, 255, 0.4);
@@ -92,4 +92,14 @@ button:hover {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+.useraccount {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 3rem;
+}
+.useraccount {
+  display: flex;
+  justify-content: center;
+  font-size: 3rem;
 }

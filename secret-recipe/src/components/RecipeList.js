@@ -24,7 +24,7 @@ const RecipeList = () => {
   };
   useEffect(() => {
     axiosWithAuth()
-      .get('/api/recipes')
+      .get('/api/recipes/user/:user_id')
       .then((res) => {
         setAllRecipes(res.data.filter((recipe) => recipe.user_id === userId));
         console.log(res);

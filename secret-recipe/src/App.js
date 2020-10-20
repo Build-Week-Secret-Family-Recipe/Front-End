@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route, Redirect, BrowserRouter } from 'react-router-dom';
 
-import ProtectedRoute from './utils/ProtectedRoute';
+import ProtectedRoute from './utils/PrivateRoute';
 
 // components
 import Navigation from './components/Navbar';

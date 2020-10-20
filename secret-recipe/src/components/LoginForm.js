@@ -21,7 +21,7 @@ const Form = styled(ReactForm)`
 `;
 
 const initialState = {
-  username: '',
+  email: '',
   password: '',
 };
 
@@ -40,7 +40,7 @@ const LoginForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     props.Login(userInfo);
-    history.push('/recipes');
+    history.push('/api/auth/recipes');
   };
 
   if (localStorage.getItem('token')) {
@@ -52,13 +52,13 @@ const LoginForm = (props) => {
           <Col xs='10' md={{ size: 5, offset: 3 }}>
             <Form onSubmit={handleSubmit}>
               <FormGroup>
-                <Label for='username'>Username</Label>
+                <Label for='email'>Email</Label>
                 <Input
                   type='text'
-                  name='username'
-                  id='username'
-                  placeholder='Username'
-                  value={userInfo.username}
+                  name='email'
+                  id='email'
+                  placeholder='Email'
+                  value={userInfo.email}
                   onChange={handleChange}
                 />
               </FormGroup>
