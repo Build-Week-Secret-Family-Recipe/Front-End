@@ -20,7 +20,7 @@ export const Login = (credentials) => (dispatch) => {
   dispatch({ type: LOGIN_START });
 
   axiosWithAuth()
-    .post('/auth/login', credentials)
+    .post('/api/auth/login', credentials)
     .then((res) => {
       console.log(res);
       localStorage.setItem('token', res.data.token);
@@ -38,7 +38,7 @@ export const Register = (credentials) => (dispatch) => {
   dispatch({ type: REGISTER_START });
 
   axiosWithAuth()
-    .post('/auth/register', credentials)
+    .post('/api/auth/register', credentials)
     .then((res) => {
       console.log(res);
       dispatch({ type: REGISTER_SUCCESS });
@@ -57,7 +57,7 @@ export const AddRecipe = (credentials) => (dispatch) => {
   });
   console.log('Adding New Recipe', credentials);
   axiosWithAuth()
-    .post('/recipes', credentials)
+    .post('/api/auth/recipes', credentials)
     .then((res) => {
       console.log('Adding Recipe', res);
       dispatch({
@@ -81,7 +81,7 @@ export const UpdateRecipe = (credentials) => (dispatch) => {
     });
     console.log('Updating data', credentials);
     axiosWithAuth()
-      .post('/recipes', credentials)
+      .post('/api/auth/recipes', credentials)
       .then((res) => {
         console.log('Updating Recipe', res);
         dispatch({
