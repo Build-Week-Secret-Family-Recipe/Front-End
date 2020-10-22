@@ -3,6 +3,7 @@ import './App.css';
 import { Switch, Route } from "react-router-dom";
 import LoginForm from "./components/LoginForm"
 import RegisterForm from "./components/RegisterForm"
+import AddRecipeForm from "./components/AddRecipeForm"
 
 function App() {
   return(
