@@ -103,7 +103,7 @@ const RegisterForm = (props) => {
                       placeholder='Password'
                     />
                     <button type='submit'>Register</button>
-                    <h6>
+                    <h6 style={{ color: '#626262' }}>
                       Already have an account?
                       <Link to='/loginForm'> Login</Link>{' '}
                     </h6>

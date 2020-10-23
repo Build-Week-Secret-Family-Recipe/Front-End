@@ -13,9 +13,9 @@ const Navigation = () => {
   };
 
   return (
-    <Navbar style={{ backgroundColor: '#320d6d' }} dark>
+    <Navbar style={{ backgroundColor: 'white' }} dark>
       <NavbarBrand
-        style={{ fontSize: '30px', color: '#ffd447' }}
+        style={{ fontSize: '30px', color: '#626262' }}
         tag={Link}
         to='/'
         className='mr-auto'>

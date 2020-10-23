@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, useHistory, Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -12,23 +12,74 @@ import {
   Input,
 } from 'reactstrap';
 import { SpinnerDiv, Spinner } from '../components/spinner';
-
+import * as Yup from "yup"; 
 import { Login } from '../store/actions';
+import { AvForm, AvField } from 'availity-reactstrap-validation';
 
 const Form = styled(ReactForm)`
   margin-top: 150px;
   width: 100%;
 `;
 
-const initialState = {
-  email: '',
-  password: '',
-};
+
 
 const LoginForm = (props) => {
   const history = useHistory();
-  const [userInfo, setUserInfo] = useState(initialState);
+  const [formState, setFormState] = useState({
+    email: "",
+    password: ""
+  });
+  const [userInfo, setUserInfo] = useState(formState);
 
+  
+  // Yup Validation
+  
+  const formSchema = Yup.object().shape({
+    email: Yup
+      .string()
+      .email("Must be a valid email address.")
+      .required("Must include email address."),
+    password: Yup
+      .string()
+      .required("Password is Required")
+    });
+  
+    const [errors, setErrors] = useState({
+      email: "",
+      password: "",
+    });
+  
+    const [buttonDisabled, setButtonDisabled] = useState(true)
+  
+    useEffect(() => {
+      formSchema.isValid(formState).then(valid => {
+        setButtonDisabled(!valid);
+      });
+    }, [formState]);
+    const inputChange = e => {
+      e.persist();
+    
+    Yup
+        .reach(formSchema, e.target.name)
+        .validate(e.target.value)
+        .then(valid => {
+          setErrors({
+            ...errors,
+            [e.target.name]: ""
+          });
+        })
+        .catch(err => {
+          setErrors({
+            ...errors,
+            [e.target.name]: err.errors[0]
+          });
+        });
+  
+      setFormState({
+        ...formState,
+        [e.target.name]: e.target.value
+      });
+    }
   const handleChange = (e) => {
     setUserInfo({
       ...userInfo,
@@ -60,10 +111,12 @@ const LoginForm = (props) => {
                   placeholder='Email'
                   value={userInfo.email}
                   onChange={handleChange}
+                  {...errors.email.length > 0 ? (<p className="error">{errors.email}</p>) : null}
                 />
               </FormGroup>
               <FormGroup>
                 <Label for='password'>Password</Label>
+
                 <Input style={{ borderRadius: '20px' }}
                   type='password'
                   name='password'
@@ -71,10 +124,11 @@ const LoginForm = (props) => {
                   placeholder='Password'
                   value={userInfo.password}
                   onChange={handleChange}
+                  {...errors.password.length > 6 ? (<p className="error">{errors.email}</p>) : null}
                 />
               </FormGroup>
               <button>Log In</button>
-              <h6 style={{ color: 'darkBlue' }}>
+              <h6 style={{ color: '#626262' }}>
                 Don't have an account?
                 <Link to='/registration'> Register Here </Link>{' '}
               </h6>
