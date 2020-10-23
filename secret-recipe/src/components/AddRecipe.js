@@ -1,70 +1,59 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { axiosWithAuth } from '../utils/axiosWithAuth';
 import {
   Container,
   Row,
   Col,
   Button,
-  Form as ReactForm,
   FormGroup,
   Label,
   Input,
+  Form as ReactForm,
 } from 'reactstrap';
-import { useParams, useHistory } from 'react-router-dom';
+import { AddRecipe } from '../store/actions';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 const Form = styled(ReactForm)`
   width: 100%;
 `;
-
 const initialState = {
   title: '',
   source: '',
   ingredients: '',
   instructions: '',
   category: '',
+  user_id: 1,
 };
 
-const EditRecipe = () => {
-  const { id } = useParams();
-  const history = useHistory();
-  const [recipe, setRecipe] = useState(initialState);
+const AddNewRecipe = () => {
+  const userId = Number(localStorage.getItem('userId'));
+  const [newRecipe, setNewRecipe] = useState(initialState);
 
-  useEffect(() => {
-    axiosWithAuth()
-      .get(`/api/recipes/${id}`)
-      .then((res) => {
-        console.log('edit recipe', res);
-        setRecipe(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [id]);
+  const history = useHistory();
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
-    e.persist();
-    setRecipe({ ...recipe, [e.target.name]: e.target.value });
+    setNewRecipe({
+      ...newRecipe,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleSubmit = (e) => {
-    console.log('Adds recipe', recipe);
     e.preventDefault();
-    axiosWithAuth()
-      .put(`/api/recipes/${id}`, recipe)
-      .then((res) => {
-        console.log(res.data);
-        setRecipe(res.data);
-        history.push(`/api/recipes/${id}`);
+    dispatch(
+      AddRecipe({
+        title: newRecipe.title,
+        source: newRecipe.source,
+        ingredients: newRecipe.ingredients,
+        instructions: newRecipe.instructions,
+        category: newRecipe.category,
+        user_id: userId,
       })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const cancel = (e) => {
-    e.preventDefault();
-    history.push(`/api/recipes/${id}`);
+    );
+    setNewRecipe(``);
+    history.push('/recipes');
   };
 
   return (
@@ -80,7 +69,7 @@ const EditRecipe = () => {
                 id='title'
                 placeholder='Recipe Title'
                 onChange={handleChange}
-                value={recipe.title}
+                value={newRecipe.title}
               />
             </FormGroup>
             <FormGroup>
@@ -89,9 +78,9 @@ const EditRecipe = () => {
                 type='text'
                 name='source'
                 id='source'
-                placeholder='Recipe Origin'
+                placeholder='Recipe Source'
                 onChange={handleChange}
-                value={recipe.source}
+                value={newRecipe.source}
               />
             </FormGroup>
             <FormGroup>
@@ -101,7 +90,7 @@ const EditRecipe = () => {
                 name='category'
                 id='category'
                 onChange={handleChange}
-                value={recipe.category}>
+                value={newRecipe.category}>
                 <option>Add category</option>
                 <option>Lunch</option>
                 <option>Breakfast</option>
@@ -114,34 +103,33 @@ const EditRecipe = () => {
               </Input>
             </FormGroup>
             <FormGroup>
-              <Label for='sampleText'>Ingredients</Label>
+              <Label for='ingredients'>Ingredients</Label>
               <Input
                 type='textarea'
                 name='ingredients'
                 id='ingredients'
                 placeholder='List of ingredients...'
                 onChange={handleChange}
-                value={recipe.ingredients}
+                value={newRecipe.ingredients}
               />
             </FormGroup>
             <FormGroup>
-              <Label for='sampleText'>Instructions</Label>
+              <Label for='exampleText'>Instructions</Label>
               <Input
                 type='textarea'
                 name='instructions'
                 id='instructions'
                 placeholder='Instructions...'
                 onChange={handleChange}
-                value={recipe.instructions}
+                value={newRecipe.instructions}
               />
             </FormGroup>
-            <Button type='submit'>Save changes</Button>
-            <Button onClick={cancel}>Cancel</Button>
+
+            <Button type='submit'>Add Recipe</Button>
           </Form>
         </Col>
       </Row>
     </Container>
   );
 };
-
-export default EditRecipe;
+export default AddNewRecipe;
