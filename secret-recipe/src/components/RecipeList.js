@@ -24,7 +24,7 @@ const RecipeList = () => {
   };
   useEffect(() => {
     axiosWithAuth()
-      .get('/api/recipes/user/:user_id')
+      .get('https://ac-family-recipes.herokuapp.com/api/recipes')
       .then((res) => {
         setAllRecipes(res.data.filter((recipe) => recipe.user_id === userId));
         console.log(res);

@@ -21,7 +21,7 @@ const RecipeCard = ({ recipe }) => {
   const history = useHistory();
   const routeToRecipe = (e) => {
     e.preventDefault();
-    history.push(`/recipes/${recipe.id}`);
+    history.push(`/api/recipes`);
   };
   return (
     <Card>

@@ -25,7 +25,9 @@ const Navigation = () => {
       {localStorage.getItem('token') ? (
         <Nav className='nav-links'>
           <NavItem>
-            <NavLink a href='need website address from Marketing'>
+            <NavLink
+              a
+              href='https://elles-secret-family-recipes.netlify.app/index.html'>
               Home
             </NavLink>
           </NavItem>

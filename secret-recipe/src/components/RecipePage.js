@@ -28,7 +28,7 @@ const RecipePage = (props) => {
 
   useEffect(() => {
     axiosWithAuth()
-      .get(`/api/recipes/user/:user_id`)
+      .get(`https://ac-family-recipes.herokuapp.com/api/recipes`)
       .then((res) => {
         console.log('Show Recipe Data', res);
         setItem(res.data);
