@@ -35,8 +35,8 @@ const Navigation = () => {
           <NavItem>
             <NavLink
               tag={Link}
-              to='/api/recipes'
-              className={location.pathname === '/recipes' ? 'active' : ''}>
+              to='/recipes'
+              className={location.pathname === '/api/recipes' ? 'active' : ''}>
               View Recipes
             </NavLink>
           </NavItem>
@@ -49,7 +49,9 @@ const Navigation = () => {
             </NavLink>
           </NavItem>
           <NavItem onClick={logout}>
-            <NavLink tag={Link} to='#'>
+            <NavLink
+              tag={Link}
+              to='https://elles-secret-family-recipes.netlify.app/index.html'>
               Log Out
             </NavLink>
           </NavItem>
