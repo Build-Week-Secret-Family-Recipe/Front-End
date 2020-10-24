@@ -35,7 +35,7 @@ const Navigation = () => {
           <NavItem>
             <NavLink
               tag={Link}
-              to='/recipes'
+              to='/api/recipes'
               className={location.pathname === '/recipes' ? 'active' : ''}>
               View Recipes
             </NavLink>
