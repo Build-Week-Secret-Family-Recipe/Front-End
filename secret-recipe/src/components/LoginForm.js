@@ -40,7 +40,7 @@ const LoginForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     props.Login(userInfo);
-    props.history.push('/api/auth/login');
+    history.push('/api/auth/login');
   };
 
   if (localStorage.getItem('token')) {
@@ -52,18 +52,18 @@ const LoginForm = (props) => {
           <Col xs='10' md={{ size: 5, offset: 3 }}>
             <Form onSubmit={handleSubmit}>
               <FormGroup>
-                <Label for="exampleEmail">Email</Label>
+                <Label for='email'>Email</Label>
                 <Input style={{ borderRadius: '20px' }}
                   type='text'
                   name='email'
                   id='email'
-                  placeholder="Example: johnandjanedoe@gmail.com"
+                  placeholder='Email'
                   value={userInfo.email}
                   onChange={handleChange}
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="examplePassword">Password</Label>
+                <Label for='password'>Password</Label>
                 <Input style={{ borderRadius: '20px' }}
                   type='password'
                   name='password'
@@ -74,14 +74,14 @@ const LoginForm = (props) => {
                 />
               </FormGroup>
               <button>Log In</button>
-              <h6 style={{ color: 'Saddlebrown' }}>
+              <h6 style={{ color: 'darkBlue' }}>
                 Don't have an account?
                 <Link to='/registration'> Register Here </Link>{' '}
               </h6>
             </Form>
             {props.isFetching && (
               <SpinnerDiv>
-                <Spinner color='saddlebrown' />
+                <Spinner color='danger' />
               </SpinnerDiv>
             )}
           </Col>

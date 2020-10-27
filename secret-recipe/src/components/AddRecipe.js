@@ -54,7 +54,6 @@ const EditRecipe = () => {
   };
 
   const handleSubmit = (e) => {
-    console.log('Adds recipe', recipe);
     e.preventDefault();
     axiosWithAuth()
       .post(`/api/recipes/user/:user_${id}`, recipe)
